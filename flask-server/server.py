@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from models import LinearRegression
 import yfinance as yf
 import pandas as pd
 import time
@@ -16,7 +17,7 @@ def data(ticker="AAPL",starting="2023-01-01",ending="2023-02-01"):
     data = yf.download(ticker, starting, ending)
     data["Date"] = data.index
     data["Adj Close"] = data["Adj Close"].round(2)
-    appendCsv(ticker, data)
+    LinearRegression(data)
     data = parseJson(data)
     return {"data" : data}
 
@@ -24,11 +25,6 @@ def data(ticker="AAPL",starting="2023-01-01",ending="2023-02-01"):
 def send():
     form = request.get_json() 
     return data(form['title'], form['start'], form['end'])
-
-def appendCsv(ticker, data):
-    csv_file_path=f"./notebooks/csv/{ticker}.csv"
-    data.to_csv(csv_file_path, index=False)
-
 
 def parseJson(stock_data):
     stock_data['Timestamps'] = [f"{i}" for i in range(len(stock_data))]
