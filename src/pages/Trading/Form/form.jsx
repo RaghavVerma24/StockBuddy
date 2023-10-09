@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const form = (props) => {
@@ -21,10 +21,35 @@ const form = (props) => {
     } catch (error) {
       console.error('Error sending data to backend:', error);
     }
-    setTitle('');
-    setStart('');
-    setEnd('');
+    setTitle(title);
+    setStart(start);
+    setEnd(end);
   }
+
+  useEffect(() => {
+    // Function to run on page reload
+    const handlePageReload = async () => {
+      try {
+        const response = await axios.post('http://localhost:5000/send', {
+          "title" : title,
+          "start" : start,
+          "end" : end 
+        });
+  
+        props.onSubmit(response.data)
+      } catch (error) {
+        console.error('Error sending data to backend:', error);
+      }
+    };
+
+    handlePageReload();
+
+    window.addEventListener('beforeunload', handlePageReload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handlePageReload);
+    };
+  }, []);
 
   return (
     <div className="mr-6 w-2/5 ">
