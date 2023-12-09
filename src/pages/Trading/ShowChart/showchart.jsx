@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-function convertDate(inputDate) {
+function ConvertDate(inputDate) {
   // Parse the input date string
   const parsedDate = new Date(inputDate);
 
@@ -25,66 +25,75 @@ function convertDate(inputDate) {
   return outputDate;
 }
 
-class showchart extends React.Component {   
-  render() {
-    let array = []
-    let dateAndTimeArray = []
-    try {
-      for(let i=0; i<Object.keys(this.props.data["data"]).length; i++) {
-          array.push(this.props.data["data"][i.toString()][0]['Adj Close'])
-          dateAndTimeArray.push(convertDate(this.props.data["data"][i.toString()][0]['Date']))
-      }
-    } catch {
+const ShowChart = (props) => {
+  const [array, setArray] = useState([]);
+  const [dateAndTimeArray, setDateAndTimeArray] = useState([]);
 
+  useEffect(() => {
+    const newArray = [];
+    const newDateAndTimeArray = [];
+
+    try {
+      for(let i = 0; i < Object.keys(props.data["data"]).length; i++) {
+        newArray.push(props.data["data"][i.toString()][0]['Adj Close']);
+        newDateAndTimeArray.push(ConvertDate(props.data["data"][i.toString()][0]['Date']));
+      }
+    } catch(error) {
+      console.error(error);
     }
-    console.log(dateAndTimeArray)
-    const options = {
-      title: {
-        text: 'My chart'
-      },
-    //   xAxis: {
-    //     tickInterval: 1,
-    //     labels: {
-    //         enabled: true,
-    //         formatter: function() { return this.props.data["data"][this.value][0]["Date"]},
-    //     }
-    //  },
-      xAxis: {
-        type: 'datetime',
-        labels: {
-            overflow: 'justify'
-        },
-        startOnTick: true,
-        showFirstLabel: true,
-        endOnTick: true,
-        showLastLabel: true,
-        categories: dateAndTimeArray,  
-        labels: {
-            rotation: 0.1,
-            align: 'left',
-            enabled: true
-        },
+
+    try {
+      if (props.model.data) {
+        for(let i = 0; i < props.model.data["Adj Close"].length; i++) {
+          newArray.push(parseFloat(parseFloat(props.model.data["Adj Close"][i]).toFixed(2)));
+          newDateAndTimeArray.push(ConvertDate(props.model.data['Date'][i]));
+        }
+      }
+    } catch(error) {
+      console.error(error);
+    }
+
+    setArray(newArray);
+    setDateAndTimeArray(newDateAndTimeArray);
+  }, [props.data, props.model]);
+
+  console.log(array)
+
+  const options = {
+    title: {
+      text: "My chart"
+    },
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        overflow: 'justify',
+        rotation: 0.1,
+        align: 'left',
+        enabled: true,
         style: {
-            fontSize: '8px'
+          fontSize: '8px'
         }
       },
-      tooltip: {
-        xDateFormat: '%Y-%m-%d %H:%M',
-        shared: true
-      },
-      series: [{
-        name: 'Price',
-        data: array
-      }]
-    }
-    
-    return (
-      <HighchartsReact
-      highcharts={Highcharts}
-      options={options}
-    />
-    )
-  }
-}
+      categories: dateAndTimeArray,
+    },
+    tooltip: {
+      xDateFormat: '%Y-%m-%d %H:%M',
+      shared: true
+    },
+    series: [{
+      name: 'Price',
+      data: array
+    }]
+  };
 
-export default showchart
+  return (
+    <div className="w-1/2">
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={options}
+      />  
+    </div>
+  );
+};
+
+export default ShowChart;

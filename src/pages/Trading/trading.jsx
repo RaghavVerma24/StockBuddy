@@ -1,33 +1,53 @@
 import React, { useState, useEffect } from 'react'   
 import Navbar from '../Navbar/navbar';
 import Form from './Form/form';
-import ShowChart from './ShowChart/showchart'
+import ShowChart from './ShowChart/showchart';
+import Performance from './Performance/performance';
+import Newchart from './ShowChart/newchart';
+import News from '../News/news';
+import Transactions from '../News/transactions';
+import Models from './Models/models';
+import Results from './Models/results';
 
 const trading = () => {
   const [data, setData] = useState([{}]);
   const [formdata, setFormdata] = useState([{}]);
+  const [lastTransaction, setLastTransaction] = useState([{}]);
 
   useEffect(() => {
     fetch("http://localhost:5000/data").then(response => 
-      response.json().then(data => {
-        setData(data);
-        console.log(data["data"])
+      response.json().then(data_obj => {
+        setData(data_obj);
+        setLastTransaction(data_obj);
       })
     );
   }, [])
+
   const retrieveData = (formData) => {
-    console.log("Data", formData);
     setFormdata(formData);
   };
 
+  const [childData, setChildData] = useState(0);
+  const [modelData, setModelData] = useState(0);
+
   return (
-    <>
+    <div className="h-screen">
       <Navbar/>
-      <div className="mx-10 my-5 w-3/5 flex flex-row h-2/4">
-        <Form onSubmit={retrieveData}/>
-        <ShowChart data={formdata}/>
+      <div className="w-auto mx-10 my-5">
+        <div className="flex flex-row">
+          <Form onSubmit={retrieveData} passChildData={setChildData} setLastTransaction={setLastTransaction}/>
+          <ShowChart data={formdata} model={modelData}/>
+          {/* <Newchart data={formdata}/> */}
+          <Models data={formdata} passModelData={setModelData}/>
+          <Results/>
+        </div>
+        <div className="flex flex-row">
+          <Performance/>
+          <Transactions data={childData} transaction={lastTransaction}/>
+          <News/>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 
