@@ -5,7 +5,7 @@ FROM python:3.9
 WORKDIR /flask-server
 
 # Copy the requirements file to the working directory
-COPY docker/requirements.txt .
+COPY requirements.txt .
 
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt

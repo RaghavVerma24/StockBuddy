@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nodejs_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+
+  flask-server:
+    build:
+      context: ./flask-server
+      dockerfile: Dockerfile 
+    ports:
+      - "5000:5000"
