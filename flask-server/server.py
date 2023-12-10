@@ -16,7 +16,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Data API Route
-@app.route("/data")
+@app.route('/data', methods=['GET', 'POST'])
 def data(ticker="AAPL",starting=None,ending=None): 
     # time.sleep(1)
     if ending is None:
@@ -39,7 +39,6 @@ def data(ticker="AAPL",starting=None,ending=None):
 
 @app.route("/model", methods=["POST"])
 def model(): 
-    print("form")
     form = request.get_json()   # Access JSON data sent in the request body
     data = form['data']
     ticker = form['ticker']
@@ -86,7 +85,11 @@ def parseJson(stock_data):
     return nested_json
 
 def storeCsv(stock_data, ticker, starting, ending):
-    csv_file_path = f"./csv/{ticker}_{''.join(filter(str.isdigit, starting))}_{''.join(filter(str.isdigit, ending))}"
+    directory = 'csv'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    csv_file_path = f"./{directory}/{ticker}_{''.join(filter(str.isdigit, starting))}_{''.join(filter(str.isdigit, ending))}.csv"
 
     stock_data.to_csv(csv_file_path, mode='a', index=False, columns=stock_data.columns.tolist())
 
@@ -96,6 +99,5 @@ def removeCsv(file_name):
     if os.path.exists(file_name):
         os.remove(file_name)
 
-if __name__ == "__main__":
-    app.run(host="localhost", debug=True)
-
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
