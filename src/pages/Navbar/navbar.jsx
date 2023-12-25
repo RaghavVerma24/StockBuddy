@@ -13,7 +13,7 @@ const navbar = () => {
   return (
     <div className="bg-white p-5 inline-block w-screen font-body">
          <div className="not-italic font-bold text-2xl leading-8 flex items-center text-gray-700 float-left ml-12">
-            HiLo
+            StockBuddy
         </div>
         
         <div className="float-left ml-12 leading-6 flex items-center">

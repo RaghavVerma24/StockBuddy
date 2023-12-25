@@ -26,7 +26,6 @@ const form = (props) => {
       });
 
       props.onSubmit(response.data)
-      console.log(response)
 
     } catch (error) {
       console.error('Error sending data to backend:', error);
@@ -46,7 +45,6 @@ const form = (props) => {
           "end" : end 
         });
   
-        console.log(response)
         props.onSubmit(response.data)
       } catch (error) {
         console.error('Error sending data to backend:', error);

@@ -57,7 +57,6 @@ const ShowChart = (props) => {
     setDateAndTimeArray(newDateAndTimeArray);
   }, [props.data, props.model]);
 
-  console.log(array)
 
   const options = {
     title: {

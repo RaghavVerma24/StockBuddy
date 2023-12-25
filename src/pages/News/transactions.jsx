@@ -12,8 +12,6 @@ const Transactions = (props) => {
         setTransaction(props.transaction); // Update the data when props.data changes
     }, [props.transaction]);
 
-    console.log("TRAN: ", transaction)
-
     return (
         <div className='w-1/5 mt-6 ml-6'>
             <div className="bg-white rounded-lg p-5">

@@ -5,7 +5,6 @@ function Models(props) {
     const [selectedModel, setSelectedModel] = useState('');
     const [amount, setAmount] = useState(1);
     const [lastTransaction, setLastTransaction] = useState([{}]);
-    console.log("LAST", lastTransaction)
 
     const handleModelSelection = (model) => {
         setSelectedModel(model);
@@ -24,7 +23,6 @@ function Models(props) {
                     type: selectedModel,
                 });
                 // Handle response if needed
-                console.log('Response:', response.data);
                 props.setLastTransaction(response.data);
                 props.passModelData(response);
             }

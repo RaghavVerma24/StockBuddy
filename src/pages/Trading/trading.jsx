@@ -29,7 +29,6 @@ const trading = () => {
 
   const [childData, setChildData] = useState(0);
   const [modelData, setModelData] = useState(0);
-  console.log("LAST", lastTransaction)
 
   return (
     <div className="h-screen">
