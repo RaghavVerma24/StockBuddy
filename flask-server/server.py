@@ -45,6 +45,7 @@ def model():
     starting = form['start']
     ending = form['end']
     type = form['type']
+    duration = form['duration']
 
     data_list = []
     for key, value in data.items():
@@ -57,11 +58,11 @@ def model():
     path = storeCsv(data, ticker, starting, ending)
 
     if (type == "Regression"):
-        data = execute_notebook_with_variables('regression_prediction.ipynb', {"file_path": path, "ticker": ticker})
+        data = execute_notebook_with_variables('regression_prediction.ipynb', {"file_path": path, "ticker": ticker, "duration": duration})
     elif (type == "ARIMA"):
-        data = execute_notebook_with_variables('arima_prediction.ipynb', {"file_path": path, "ticker": ticker})
+        data = execute_notebook_with_variables('arima_prediction.ipynb', {"file_path": path, "ticker": ticker, "duration": duration})
     elif (type == "LSTM"):
-        data = execute_notebook_with_variables('lstm_prediction.ipynb', {"file_path": path, "ticker": ticker})
+        data = execute_notebook_with_variables('lstm_prediction.ipynb', {"file_path": path, "ticker": ticker, "duration": duration})
 
     removeCsv(path)
     return {"data" : data, "ticker" : ticker, "start" : starting, "end": ending, "time" : datetime.now().strftime('%I:%M %p'), "price" : today_close, "change" : ((today_close - yesterday_close)/yesterday_close * 100).round(2), "modal" : "Regression"}
