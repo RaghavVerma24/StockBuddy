@@ -18,7 +18,7 @@ CORS(app)
 # Data API Route
 @app.route('/data', methods=['GET', 'POST'])
 def data(ticker="AAPL",starting=None,ending=None): 
-    # time.sleep(1)
+    time.sleep(1)
     if ending is None:
         ending = datetime.now().strftime("%Y-%m-%d")
 
@@ -51,6 +51,8 @@ def model():
         data_list.extend(value)
     data = pd.DataFrame(data_list)
 
+    today_close = data["Adj Close"][len(data)-1]
+    yesterday_close = data["Adj Close"][len(data)-2]
 
     path = storeCsv(data, ticker, starting, ending)
 
@@ -62,7 +64,7 @@ def model():
         data = execute_notebook_with_variables('lstm_prediction.ipynb', {"file_path": path, "ticker": ticker})
 
     removeCsv(path)
-    return data
+    return {"data" : data, "ticker" : ticker, "start" : starting, "end": ending, "time" : datetime.now().strftime('%I:%M %p'), "price" : today_close, "change" : ((today_close - yesterday_close)/yesterday_close * 100).round(2), "modal" : "Regression"}
 
 @app.route("/send", methods=["POST"])
 def send():
@@ -73,7 +75,6 @@ def send():
 def latest():
     data = get_latest_stock_data()
     json_data = data.to_json(orient='records')  
-    print(jsonify(json_data))
     return json_data
 
 def parseJson(stock_data):

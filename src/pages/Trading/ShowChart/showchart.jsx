@@ -43,10 +43,10 @@ const ShowChart = (props) => {
     }
 
     try {
-      if (props.model.data) {
-        for(let i = 0; i < props.model.data["Adj Close"].length; i++) {
-          newArray.push(parseFloat(parseFloat(props.model.data["Adj Close"][i]).toFixed(2)));
-          newDateAndTimeArray.push(ConvertDate(props.model.data['Date'][i]));
+      if (props.model.data.data) {
+        for(let i = 0; i < props.model.data.data["Adj Close"].length; i++) {
+          newArray.push(parseFloat(parseFloat(props.model.data.data["Adj Close"][i]).toFixed(2)));
+          newDateAndTimeArray.push(ConvertDate(props.model.data.data['Date'][i]));
         }
       }
     } catch(error) {

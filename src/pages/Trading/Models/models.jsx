@@ -3,12 +3,17 @@ import axios from 'axios';
 
 function Models(props) {
     const [selectedModel, setSelectedModel] = useState('');
+    const [amount, setAmount] = useState(1);
+    const [lastTransaction, setLastTransaction] = useState([{}]);
+    console.log("LAST", lastTransaction)
 
     const handleModelSelection = (model) => {
         setSelectedModel(model);
     };
 
     const handleGenerate = async () => {
+        setAmount(amount + 1);
+        props.passChildData(amount);
         try {
             if (selectedModel) {
                 const response = await axios.post('http://localhost:5000/model', {
@@ -19,27 +24,14 @@ function Models(props) {
                     type: selectedModel,
                 });
                 // Handle response if needed
-                console.log('Response:', response);
+                console.log('Response:', response.data);
+                props.setLastTransaction(response.data);
                 props.passModelData(response);
             }
         } catch (error) {
             console.error('Error sending data to backend:', error);
         }
     };
-
-    // const handleGenerate = async (event) => {
-    //     event.preventDefault();
-    //     try {
-    //       const response = await axios.post('http://localhost:5000/send', {
-    //         "title" : "title",
-    //         "start" : "start",
-    //         "end" : "end" 
-    //       });
-    
-    //     } catch (error) {
-    //       console.error('Error sending data to backend:', error);
-    //     }
-    //   }
 
     return (
         <div className="bg-white rounded-lg p-5 ml-6">

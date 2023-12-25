@@ -12,12 +12,8 @@ const form = (props) => {
   const [title, setTitle] = useState("AAPL");
   const [start, setStart] = useState(pastDateString);
   const [end, setEnd] = useState(endDateString);
-  const [amount, setAmount] = useState(1);
-  const [lastTransaction, setLastTransaction] = useState([{}]);
 
   const handleButtonClick = () => {
-    setAmount(amount + 1);
-    props.passChildData(amount);
   };
   
   const sendData = async (event) => {
@@ -29,7 +25,6 @@ const form = (props) => {
         "end" : end 
       });
 
-      props.setLastTransaction(response.data);
       props.onSubmit(response.data)
       console.log(response)
 

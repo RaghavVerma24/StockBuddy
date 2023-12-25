@@ -29,16 +29,17 @@ const trading = () => {
 
   const [childData, setChildData] = useState(0);
   const [modelData, setModelData] = useState(0);
+  console.log("LAST", lastTransaction)
 
   return (
     <div className="h-screen">
       <Navbar/>
       <div className="w-auto mx-10 my-5">
         <div className="flex flex-row">
-          <Form onSubmit={retrieveData} passChildData={setChildData} setLastTransaction={setLastTransaction}/>
+          <Form onSubmit={retrieveData}/>
           <ShowChart data={formdata} model={modelData}/>
           {/* <Newchart data={formdata}/> */}
-          <Models data={formdata} passModelData={setModelData}/>
+          <Models data={formdata} passModelData={setModelData} passChildData={setChildData} setLastTransaction={setLastTransaction}/>
           <Results/>
         </div>
         <div className="flex flex-row">
