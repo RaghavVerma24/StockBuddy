@@ -60,7 +60,7 @@ const ShowChart = (props) => {
 
   const options = {
     title: {
-      text: "My chart"
+      text: props.data.ticker
     },
     xAxis: {
       type: 'datetime',
