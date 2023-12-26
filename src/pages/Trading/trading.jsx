@@ -31,7 +31,7 @@ const trading = () => {
   const [modelData, setModelData] = useState(0);
 
   return (
-    <div className="h-screen">
+    <div className="h-screen overflow-hidden">
       <Navbar/>
       <div className="w-auto mx-10 my-5">
         <div className="flex flex-row">
@@ -39,7 +39,7 @@ const trading = () => {
           <ShowChart data={formdata} model={modelData}/>
           {/* <Newchart data={formdata}/> */}
           <Models data={formdata} passModelData={setModelData} passChildData={setChildData} setLastTransaction={setLastTransaction}/>
-          <Results/>
+          <Results data={formdata.ticker}/>
         </div>
         <div className="flex flex-row">
           <Performance/>

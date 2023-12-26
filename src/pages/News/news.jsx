@@ -63,7 +63,7 @@ function News() {
   }, [currentArticleIndex]);
 
   return (
-    <div className='ml-6 w-fit overflow-hidden mt-6' style={{ overflowY: 'auto' }}>
+    <div className='ml-6 w-[24%] overflow-hidden mt-6' style={{ overflowY: 'auto' }}>
       <div
         id='news-article'
         ref={articleContainerRef}

@@ -86,7 +86,7 @@ const ShowChart = (props) => {
   };
 
   return (
-    <div className="w-1/2">
+    <div className="w-[48%]">
       <HighchartsReact
         highcharts={Highcharts}
         options={options}

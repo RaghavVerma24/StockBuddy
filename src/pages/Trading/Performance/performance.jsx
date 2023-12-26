@@ -134,17 +134,51 @@ export default function performance() {
   });
 
   return (
-    <div className="my-5 h-[25rem] w-3/4">
-      <ThemeProvider theme={theme}>
-        <Paper style={{ height: '40vh', width: '100%' }}>
-          <TableVirtuoso
-            data={rows}
-            components={VirtuosoTableComponents}
-            fixedHeaderContent={fixedHeaderContent}
-            itemContent={rowContent}
-          />
-        </Paper>
-      </ThemeProvider>
+    <div className="my-5 w-[calc(60%+1.5rem)] mt-6">
+      <table className="w-full divide-y divide-gray-200 rounded-lg">
+        <thead className="bg-blue-700">
+          <tr>
+            <th className="px-3 py-3 text-left text-s font-medium text-white tracking-wider">Symbol</th>
+            <th className="px-3 py-3 text-left text-s font-medium text-white tracking-wider">Volume</th>
+            <th className="px-3 py-3 text-left text-s font-medium text-white tracking-wider">Last Price</th>
+            <th className="px-3 py-3 text-left text-s font-medium text-white tracking-wider">Week Change</th>
+            <th className="px-3 py-3 text-left text-s font-medium text-white tracking-wider">Month Change</th>
+            <th className="px-3 py-3 text-left text-s font-medium text-white tracking-wider">Year Change</th>
+            <th className="px-3 py-3 text-left text-s font-medium text-white tracking-wider">Change (%)</th>
+          </tr>
+        </thead>
+      </table>
+      <div className="overflow-y-auto max-h-96">
+        <table className="w-full divide-y divide-gray-200 rounded-lg">
+          <tbody className="bg-white divide-y divide-gray-200">
+            {stock.map((stockItem, index) => {
+              const weekChangePercent = ((stockItem[2] - stockItem[3]) / stockItem[3]) * 100;
+              const monthChangePercent = ((stockItem[2] - stockItem[4]) / stockItem[4]) * 100;
+              const yearChangePercent = ((stockItem[2] - stockItem[5]) / stockItem[5]) * 100;
+
+              return (
+                <tr key={index}>
+                  <td className="px-3 py-4 text-left whitespace-nowrap">{stockItem[0]}</td>
+                  <td className="px-3 py-4 text-left whitespace-nowrap">{stockItem[1]}</td>
+                  <td className="px-3 py-4 text-left whitespace-nowrap">{stockItem[2]}</td>
+                  <td className={`px-3 py-4 text-left whitespace-nowrap ${weekChangePercent < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                    {stockItem[3]} ({weekChangePercent.toFixed(2)}%)
+                  </td>
+                  <td className={`px-3 py-4 text-left whitespace-nowrap ${monthChangePercent < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                    {stockItem[4]} ({monthChangePercent.toFixed(2)}%)
+                  </td>
+                  <td className={`px-3 py-4 text-left whitespace-nowrap ${yearChangePercent < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                    {stockItem[5]} ({yearChangePercent.toFixed(2)}%)
+                  </td>
+                  <td className={`px-3 py-4 text-left whitespace-nowrap ${stockItem[6] < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                    {stockItem[6]}%
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

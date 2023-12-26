@@ -17,17 +17,20 @@
     "@stoqey/finnhub": "^0.3.4",
     "@syncfusion/ej2-react-charts": "^23.1.39",
     "axios": "^1.5.1",
+    "chart.js": "^4.4.1",
     "finnhub": "^1.2.18",
     "finnhub-ts": "^1.0.7",
     "highcharts": "^11.1.0",
     "highcharts-react-official": "^3.2.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-finnhub": "^1.0.7",
     "react-google-charts": "^4.0.1",
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
-    "react-virtuoso": "^4.6.0"
+    "react-virtuoso": "^4.6.0",
+    "victory": "^36.7.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

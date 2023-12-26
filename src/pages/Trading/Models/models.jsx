@@ -34,7 +34,7 @@ function Models(props) {
     };
 
     return (
-        <div className="bg-white rounded-lg p-5 ml-6">
+        <div className="bg-white rounded-lg p-5 ml-6 w-[16%]">
             <div className="container mx-auto">
                 <div className="flex flex-col space-y-4 items-center">
                     <div className="font-dm-sans font-semibold text-xl leading-5 flex items-center text-gray-500 mb-1">Generate ML Models</div>

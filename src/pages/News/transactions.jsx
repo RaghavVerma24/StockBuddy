@@ -13,7 +13,7 @@ const Transactions = (props) => {
     }, [props.transaction]);
 
     return (
-        <div className='w-1/5 mt-6 ml-6'>
+        <div className='w-[16%] mt-6 ml-6'>
             <div className="bg-white rounded-lg p-5">
                 <div className="flex items-center">
                     <img src="src\assets\transactions.png" alt='Transactions' className='w-16' />

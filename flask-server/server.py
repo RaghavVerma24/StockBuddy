@@ -65,7 +65,7 @@ def model():
         data = execute_notebook_with_variables('lstm_prediction.ipynb', {"file_path": path, "ticker": ticker, "duration": duration})
 
     removeCsv(path)
-    return {"data" : data, "ticker" : ticker, "start" : starting, "end": ending, "time" : datetime.now().strftime('%I:%M %p'), "price" : today_close, "change" : ((today_close - yesterday_close)/yesterday_close * 100).round(2), "modal" : "Regression"}
+    return {"data" : data, "ticker" : ticker, "start" : starting, "end": ending, "time" : datetime.now().strftime('%I:%M %p'), "price" : today_close, "change" : ((today_close - yesterday_close)/yesterday_close * 100).round(2), "modal" : type}
 
 @app.route("/send", methods=["POST"])
 def send():
