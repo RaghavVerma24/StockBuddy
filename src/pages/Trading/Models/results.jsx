@@ -14,7 +14,7 @@ const Result = (props) => {
   const [animatedData, setAnimatedData] = useState([]);
 
   useEffect(() => {
-    const apiKey = 'clmd7ghr01qjiveu2vogclmd7ghr01qjiveu2vp0';
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     const finnhubClient = new DefaultApi({
       apiKey,
