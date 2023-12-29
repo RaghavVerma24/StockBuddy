@@ -37,9 +37,9 @@ const trading = () => {
         <div className="flex flex-row">
           <Form onSubmit={retrieveData}/>
           {/* <ShowChart data={formdata} model={modelData}/> */}
-          <Newchart data={formdata}/>
+          <Newchart data={formdata} model={modelData}/>
           <Models data={formdata} passModelData={setModelData} passChildData={setChildData} setLastTransaction={setLastTransaction}/>
-          <Results data={formdata.ticker}/>
+          <Results data={formdata.ticker} />
         </div>
         <div className="flex flex-row">
           <Performance/>
