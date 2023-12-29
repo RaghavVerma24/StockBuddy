@@ -49,7 +49,7 @@ const Result = (props) => {
   }, [ratings]);
 
   return (
-    <div className="ml-6 w-[24%] bg-white rounded-lg">
+    <div className="ml-6 min-w-[21%] max-w-[21%] bg-white rounded-lg">
       <svg viewBox="0 0 400 400">
         <VictoryPie
           standalone={false}

@@ -134,7 +134,7 @@ const NewChart = (props) => {
   };
 
   return (
-    <div className="w-[48%]">
+    <div className="min-w-[48%] max-w-[48%]">
       <div className="flex justify-center items-center">
         <div className="not-italic font-bold text-xl leading-8 flex items-center text-indigo-700 text-center no-underline">Current Stock Price {'>'} {props.data.ticker}</div>
       </div>

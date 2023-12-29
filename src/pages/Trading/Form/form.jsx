@@ -61,7 +61,7 @@ const form = (props) => {
   }, []);
 
   return (
-    <div className="mr-6 w-[12%]">
+    <div className="mr-6 min-w-[12%] max-w-[12%]">
       <form onSubmit = {sendData} encType="multipart/form-data">
       <div className="mb-6">
         <label

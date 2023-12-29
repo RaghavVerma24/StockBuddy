@@ -134,7 +134,7 @@ export default function performance() {
   });
 
   return (
-    <div className="my-5 w-[calc(60%+1.5rem)] mt-6">
+    <div className="my-5 min-w-[calc(60%+1.5rem)] max-w-[calc(60%+1.5rem)] mt-6">
       <table className="w-full divide-y divide-gray-200 rounded-lg">
         <thead className="bg-blue-700">
           <tr>
