@@ -30,6 +30,10 @@ const trading = () => {
   const [childData, setChildData] = useState(0);
   const [modelData, setModelData] = useState(0);
 
+  useEffect(() => {
+    setModelData(0);
+  }, [formdata])
+
   return (
     <div className="h-screen overflow-hidden">
       <Navbar/>
