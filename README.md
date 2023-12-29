@@ -1,9 +1,9 @@
 
 # Stock Price Prediction Platform
 
-A stock price prediction platform built using Flask, React, and Python, providing users with up-to-date predictions and analysis with statistical and deep learning models like ARIMA, GARCH, LSTM, and CNN.
+A stock price prediction platform built using Flask, React, and Python, providing users with up-to-date predictions and analysis with statistical and deep learning models like ARIMA, Regression, LSTM, and CNN.
 
-![image](https://github.com/RaghavVerma24/StockBuddy/assets/59304737/c65df36e-d0df-4290-b1f0-8d446f8db88a)
+![image](https://github.com/RaghavVerma24/StockBuddy/assets/59304737/1564b7c8-cc26-4278-a5b4-e20297e270c1)
 
 ## Technologies Used
 
