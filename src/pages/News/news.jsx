@@ -63,7 +63,7 @@ function News() {
   }, [currentArticleIndex]);
 
   return (
-    <div className='ml-6  min-w-[24%] max-w-[24%] overflow-hidden mt-6' style={{ overflowY: 'auto' }}>
+    <div className='ml-6 h-full rounded-lg min-w-[21%] max-w-[21%] overflow-hidden mt-6 bg-white' style={{ overflowY: 'auto' }}>
       <div
         id='news-article'
         ref={articleContainerRef}
@@ -77,7 +77,7 @@ function News() {
         {newsData.map((article, index) => (
           <div
             key={article.id}
-            className={`bg-white mb-10 rounded-2xl max-w-[30rem] ${
+            className={`mb-10 max-w-[30rem] ${
               index === currentArticleIndex ? 'block' : 'hidden'
             }`}
             style={{ position: 'relative' }}
@@ -87,7 +87,7 @@ function News() {
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-              <img src={article.image} alt='News' className='rounded-t-2xl h-[15rem]' />
+              <img src={article.image} alt='News' className='rounded-t-lg h-[15rem]' />
             </a>
             <div className='p-5 h-[10rem] max-w-[30rem]'>
               <h3 className="font-dm-sans font-normal text-base flex items-center text-gray-700">
@@ -96,7 +96,7 @@ function News() {
               <p className="font-dm-sans font-normal text-md leading-[11px] flex items-center text-gray-400 my-2">
                 {article.formattedDate}
               </p>
-              <p className="absolute w-336 h-30 left-1103 top-808 font-dm-sans font-normal text-base leading-[15px] flex items-center text-gray-400">
+              <p className="absolute w-336 h-30 left-1103 top-808 font-dm-sans font-normal text-base leading-[15px] flex items-center text-gray-400 mb-4">
                 {article.summary}
               </p>
             </div>
