@@ -15,7 +15,6 @@ RUN python3 -m ipykernel install --user
 COPY server.py .
 COPY models.py .
 COPY historical_data.py .
-COPY notebook.py .
 COPY run_notebook.py .
 
 COPY notebooks/arima_prediction.ipynb notebooks/
