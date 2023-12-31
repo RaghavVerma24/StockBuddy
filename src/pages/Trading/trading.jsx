@@ -15,7 +15,7 @@ const trading = () => {
   const [lastTransaction, setLastTransaction] = useState([{}]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/data").then(response => 
+    fetch("https://stockbuddy.onrender.com/api/v1/data").then(response => 
       response.json().then(data_obj => {
         setData(data_obj);
         setLastTransaction(data_obj);

@@ -16,7 +16,7 @@ function Models(props) {
         props.passChildData(amount);
         try {
             if (selectedModel) {
-                const response = await axios.post('http://localhost:5000/model', {
+                const response = await axios.post('https://stockbuddy.onrender.com/api/v1/model', {
                     data: props.data.data,
                     ticker: props.data.ticker,
                     start: props.data.start,

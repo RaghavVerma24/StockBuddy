@@ -13,7 +13,7 @@ export default function performance() {
   const [stock, setStock] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/latest").then(response => 
+    fetch("https://stockbuddy.onrender.com/api/v1/latest").then(response => 
       response.json().then(data => {
         let stockData = [];
 
